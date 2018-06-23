@@ -18,3 +18,17 @@ var urlsToCache = [
   '/index.html',
   '/resources/style/main.css',
 ]
+
+ // Getting offline pages
+
+ self.addEventListener ('fetch', (event) => {
+   event.respondWith(
+     caches.natch(event.request)
+     .then((response)=>{
+       if (response) {
+         return response;
+       }
+       return fetch(event.request);
+     })
+   )
+ })
