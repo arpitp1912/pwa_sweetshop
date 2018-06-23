@@ -37,7 +37,7 @@ var urlsToCache = [
      }).catch((err) => {
        return caches.open(STATIC_CACHE)
        .then(function(cache) {
-         return.cache.match('/offline.html');
+         return cache.match('/offline.html');
        })
      })
    )
