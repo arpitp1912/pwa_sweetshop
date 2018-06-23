@@ -24,7 +24,7 @@ var urlsToCache = [
 
  self.addEventListener ('fetch', (event) => {
    event.respondWith(
-     caches.natch(event.request)
+     caches.match(event.request)
      .then((response)=>{
        if (response) {
          return response;
