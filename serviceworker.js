@@ -10,3 +10,11 @@ if ('serviceWorker' in navigator) {
 } else {
   console.log('nope')
 }
+
+const STATIC_CACHE = "1.1";
+
+var urlsToCache = [
+  '/',
+  '/index.html',
+  '/resources/style/main.css',
+]
