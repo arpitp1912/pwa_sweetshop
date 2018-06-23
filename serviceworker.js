@@ -11,12 +11,13 @@ if ('serviceWorker' in navigator) {
   console.log('nope')
 }
 
-const STATIC_CACHE = "1.1";
+const STATIC_CACHE = "1.2";
 
 var urlsToCache = [
   '/',
   '/index.html',
   '/resources/style/main.css',
+  './offline.html'
 ]
 
  // Getting offline pages
@@ -27,8 +28,17 @@ var urlsToCache = [
      .then((response)=>{
        if (response) {
          return response;
+       }else {
+         return fetch(event.request)
+         .then((response) => {
+           return response
+         })
        }
-       return fetch(event.request);
+     }).catch((err) => {
+       return caches.open(STATIC_CACHE)
+       .then(function(cache) {
+         return.cache.match('/offline.html');
+       })
      })
    )
  })
